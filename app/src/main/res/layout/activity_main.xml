@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imageView_pic"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:adjustViewBounds="true"
+        android:scaleType="center"
+        app:layout_constraintDimensionRatio="h,1.78:1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView_pic">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideLine_center_line"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.5" />
+
+            <TextView
+                android:id="@+id/textView_item_rotation_degree_title"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginLeft="12dp"
+                android:gravity="center"
+                android:text="setItemDegree"
+                app:layout_constraintBottom_toBottomOf="@+id/seekBar_item_rotation_degree"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/seekBar_item_rotation_degree" />
+
+            <TextView
+                android:id="@+id/textView_item_rotation_degree"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginRight="12dp"
+                android:gravity="center_vertical|right"
+                android:minWidth="36dp"
+                android:text="0"
+                app:layout_constraintBottom_toBottomOf="@+id/seekBar_item_rotation_degree"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/seekBar_item_rotation_degree" />
+
+            <SeekBar
+                android:id="@+id/seekBar_item_rotation_degree"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:max="360"
+                android:min="0"
+                android:progress="0"
+                app:layout_constraintLeft_toRightOf="@+id/textView_item_rotation_degree_title"
+                app:layout_constraintRight_toLeftOf="@+id/textView_item_rotation_degree"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView_item_background_image_alpha_title"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginLeft="12dp"
+                android:gravity="center"
+                android:text="setItemBackgroundImageAlpha"
+                app:layout_constraintBottom_toBottomOf="@+id/seekBar_item_background_image_alpha"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/seekBar_item_background_image_alpha" />
+
+            <TextView
+                android:id="@+id/textView_item_background_image_alpha"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginRight="12dp"
+                android:gravity="center_vertical|right"
+                android:minWidth="36dp"
+                android:text="100"
+                app:layout_constraintBottom_toBottomOf="@+id/seekBar_item_background_image_alpha"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/seekBar_item_background_image_alpha" />
+
+            <SeekBar
+                android:id="@+id/seekBar_item_background_image_alpha"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:max="255"
+                android:min="0"
+                android:progress="100"
+                app:layout_constraintLeft_toRightOf="@+id/textView_item_background_image_alpha_title"
+                app:layout_constraintRight_toLeftOf="@+id/textView_item_background_image_alpha"
+                app:layout_constraintTop_toBottomOf="@+id/seekBar_item_rotation_degree" />
+
+            <View
+                android:id="@+id/view_divider_one"
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginTop="12dp"
+                android:background="@android:color/black"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/seekBar_item_background_image_alpha" />
+
+            <TextView
+                android:id="@+id/textView_item_gravity_title"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginTop="12dp"
+                android:gravity="center"
+                android:text="setItemGravity"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/guideLine_center_line"
+                app:layout_constraintTop_toBottomOf="@+id/view_divider_one" />
+
+            <RadioGroup
+                android:id="@+id/radioGroup_item_gravity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:checkedButton="@id/radioButton_item_gravity_LEFT"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/guideLine_center_line"
+                app:layout_constraintTop_toBottomOf="@+id/textView_item_gravity_title">
+
+                <RadioButton
+                    android:id="@+id/radioButton_item_gravity_LEFT"
+                    style="@style/WMMRadioButton"
+                    android:text="TOP" />
+
+                <RadioButton
+                    android:id="@+id/radioButton_item_gravity_CENTER"
+                    style="@style/WMMRadioButton"
+                    android:text="CENTER" />
+
+                <RadioButton
+                    android:id="@+id/radioButton_item_gravity_RIGHT"
+                    style="@style/WMMRadioButton"
+                    android:text="RIGHT" />
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/textView_canvas_gravity_title"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginTop="12dp"
+                android:gravity="center"
+                android:text="setCanvasGravity"
+                app:layout_constraintLeft_toRightOf="@+id/guideLine_center_line"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view_divider_one" />
+
+            <RadioGroup
+                android:id="@+id/radioGroup_canvas_gravity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:checkedButton="@id/radioButton_canvas_gravity_LEFT_TOP"
+                app:layout_constraintLeft_toRightOf="@+id/guideLine_center_line"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_canvas_gravity_title">
+
+                <RadioButton
+                    android:id="@+id/radioButton_canvas_gravity_LEFT_TOP"
+                    style="@style/WMMRadioButton"
+                    android:text="LEFT_TOP" />
+
+                <RadioButton
+                    android:id="@+id/radioButton_canvas_gravity_LEFT_BOTTOM"
+                    style="@style/WMMRadioButton"
+                    android:text="LEFT_BOTTOM" />
+
+                <RadioButton
+                    android:id="@+id/radioButton_canvas_gravity_CENTER"
+                    style="@style/WMMRadioButton"
+                    android:text="CENTER" />
+
+                <RadioButton
+                    android:id="@+id/radioButton_canvas_gravity_RIGHT_TOP"
+                    style="@style/WMMRadioButton"
+                    android:text="RIGHT_TOP" />
+
+                <RadioButton
+                    android:id="@+id/radioButton_canvas_gravity_RIGHT_BOTTOM"
+                    style="@style/WMMRadioButton"
+                    android:text="RIGHT_BOTTOM" />
+            </RadioGroup>
+
+            <View
+                android:id="@+id/view_divider_two"
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginTop="12dp"
+                android:background="@android:color/black"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/radioGroup_canvas_gravity" />
+
+            <TextView
+                android:id="@+id/textView_repeat_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:gravity="center"
+                android:text="setRepeat"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/guideLine_center_line"
+                app:layout_constraintTop_toBottomOf="@+id/view_divider_two" />
+
+            <RadioGroup
+                android:id="@+id/radioGroup_repeat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkedButton="@id/radioButton_repeat_REPEAT"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/guideLine_center_line"
+                app:layout_constraintTop_toBottomOf="@+id/textView_repeat_title">
+
+                <RadioButton
+                    android:id="@+id/radioButton_repeat_NONE"
+                    style="@style/WMMRadioButton"
+                    android:text="NONE" />
+
+                <RadioButton
+                    android:id="@+id/radioButton_repeat_REPEAT"
+                    style="@style/WMMRadioButton"
+                    android:text="REPEAT" />
+
+                <RadioButton
+                    android:id="@+id/radioButton_repeat_ODD"
+                    style="@style/WMMRadioButton"
+                    android:text="ODD" />
+
+                <RadioButton
+                    android:id="@+id/radioButton_repeat_EVEN"
+                    style="@style/WMMRadioButton"
+                    android:text="EVEN" />
+            </RadioGroup>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
+

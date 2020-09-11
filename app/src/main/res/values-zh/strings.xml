@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">WatermarkMaker</string>
+    <string name="nickname">昵称: dkzwm</string>
+    <string name="operation_time">操作时间: %s</string>
+    <string name="only_be_used_for_this_business">只能用于本业务，办理其他则无效</string>
+</resources>

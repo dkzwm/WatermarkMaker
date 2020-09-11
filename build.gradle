@@ -1,0 +1,69 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+    ext.kotlin_version = "1.4.0"
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:4.0.1"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+plugins {
+    id "com.diffplug.spotless" version "5.3.0"
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+subprojects {
+    def name = it.name
+    apply plugin: 'com.diffplug.spotless'
+    spotless {
+        java {
+            target '**/*.java'
+            googleJavaFormat('1.7')
+        }
+        kotlin {
+            target "**/*.kt"
+            ktlint('0.38.1').userData([
+                    disabled_rules          : "no-wildcard-imports",
+                    insert_final_newline    : 'true',
+                    indent_size             : "4",
+                    continuation_indent_size: "4",
+            ])
+            if (name != 'app') {
+                licenseHeaderFile project.rootProject.file('spotless/copyright.kt')
+            }
+        }
+    }
+}
+
+ext {
+    android = [
+            compileSdkVersion: 30,
+            buildToolsVersion: "29.0.3",
+            minSdkVersion    : 14,
+            targetSdkVersion : 30,
+            versionCode      : 1,
+            versionName      : "0.0.1"
+    ]
+    bintray = [
+            siteUrl       : 'https://github.com/dkzwm/WatermarkMaker',
+            gitUrl        : 'https://github.com/dkzwm/WatermarkMaker.git',
+            groupId       : "me.dkzwm.graphics.wmm",
+            libVersion    : android.versionName,
+            developerId   : "dkzwm",
+            developerName : "Zhang Weiming",
+            developerEmail: "aidkzwm@gmail.com",
+            licenseName   : "MIT License",
+            licenseUrl    : "https://opensource.org/licenses/MIT",
+    ]
+    allLicenses = ['MIT']
+}
