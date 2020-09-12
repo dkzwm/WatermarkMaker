@@ -3,13 +3,6 @@
 
 一款用于生成水印图的轻量级库。
 
-## 特性:
- - 支持文字和图片组合
- - 支持多行显示
- - 支持重叠布置
- - 自动填充删除占位符
- - 支持配置清除图标且不会占用CompoundDrawables的位置
-
 ## 演示程序
 下载 [Demo.apk](https://raw.githubusercontent.com/dkzwm/WatermarkMaker/master/apk/demo.apk)
 ## 快照
@@ -18,7 +11,7 @@
 添加如下依赖到你的 build.gradle 文件:
 ```
 dependencies {
-    //implementation 'me.dkzwm.graphics.wmm:core:0.0.1'
+    implementation 'me.dkzwm.graphics.wmm:core:0.0.1'
 }
 ```
 ## 使用

@@ -1,6 +1,11 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.jfrog.bintray'
+apply plugin: 'com.github.dcendents.android-maven'
+
+group = rootProject.ext.bintray['groupId']
+version = rootProject.ext.android['versionName']
 
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
@@ -22,7 +27,81 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    compileOnly "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     compileOnly 'androidx.appcompat:appcompat:1.2.0'
+}
+
+bintray {
+    Properties properties = new Properties()
+    properties.load(project.rootProject.file('local.properties').newDataInputStream())
+    user = properties.getProperty("bintray.user")
+    key = properties.getProperty("bintray.key")
+
+    configurations = ['archives']
+    pkg {
+        repo = 'maven-wmm'
+        name = 'core'
+        desc = 'A lightweight library for creating watermark images.'
+        websiteUrl = rootProject.ext.bintray['siteUrl']
+        vcsUrl = rootProject.ext.bintray['gitUrl']
+        licenses = rootProject.ext.allLicenses
+        publish = true
+    }
+}
+
+
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+task javadoc(type: Javadoc) {
+    failOnError false
+    source = android.sourceSets.main.java.sourceFiles
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+    classpath += configurations.compile
+}
+
+// build a jar with javadoc
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives sourcesJar
+    archives javadocJar
+}
+
+install {
+    repositories.mavenInstaller {
+        pom {
+            project {
+                packaging 'aar'
+                name 'WatermarkMaker-Core'
+                groupId rootProject.ext.bintray['groupId']
+                url rootProject.ext.bintray['siteUrl']
+                artifactId 'core'
+                description 'A lightweight library for creating watermark images.'
+                licenses {
+                    license {
+                        name rootProject.ext.bintray['licenseName']
+                        url rootProject.ext.bintray['licenseUrl']
+                    }
+                }
+                developers {
+                    developer {
+                        id rootProject.ext.bintray['developerId']
+                        name rootProject.ext.bintray['developerName']
+                        email rootProject.ext.bintray['developerEmail']
+                    }
+                }
+                scm {
+                    connection rootProject.ext.bintray['gitUrl']
+                    developerConnection rootProject.ext.bintray['gitUrl']
+                    url rootProject.ext.bintray['siteUrl']
+                }
+            }
+        }
+    }
 }
