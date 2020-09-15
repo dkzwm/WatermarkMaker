@@ -61,7 +61,6 @@ class WatermarkMaker private constructor(
     private var mWatermarkBitmap: Bitmap? = null
 
     fun make(): Bitmap {
-        Shader.TileMode.CLAMP
         val bitmap = mWatermarkBitmap
         if (bitmap == null) {
             mPaint.isDither = true
@@ -161,7 +160,11 @@ class WatermarkMaker private constructor(
                     mMatrix.reset()
                     mMatrix.postScale(scale, scale, offsetX, offsetY)
                     if (mItemBackgroundImageDegree != -1F) {
-                        mMatrix.postRotate(mItemBackgroundImageDegree - mItemDegree, offsetX, offsetY)
+                        mMatrix.postRotate(
+                            mItemBackgroundImageDegree - mItemDegree,
+                            offsetX,
+                            offsetY
+                        )
                     }
                     val scaledBitmap = Bitmap.createBitmap(
                         mItemBackgroundImage,
